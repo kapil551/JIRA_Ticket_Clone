@@ -21,3 +21,9 @@
     - Differences
 
     - Local Storage API
+
+
+4. Building the Project:
+
+    - HTML CSS Structuring
+    
