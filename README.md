@@ -44,3 +44,14 @@
         - font awesome icons
 
             - https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=times
+
+        - How do it center an absolutely positioned div element?
+
+            - https://stackoverflow.com/questions/1776915/how-can-i-center-an-absolutely-positioned-element-in-a-div
+
+                    div {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                    }
