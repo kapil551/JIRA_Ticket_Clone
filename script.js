@@ -35,9 +35,10 @@ let CreateNewTicketHandler = (event) => {
     // console.log(event.key);
 
     let currentPressedKey = event.key;
+    // console.log(currentPressedKey);
 
     // create a new ticket only when the user presses on "Shift" key inside the textarea of modal container
-    if(currentPressedKey === "Shift") {
+    if(currentPressedKey === "Alt") {
         
         // Create a new ticket
         createNewTicket();
