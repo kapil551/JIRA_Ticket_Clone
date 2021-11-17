@@ -34,3 +34,13 @@
         - https://themesberg.com/knowledge-center/tailwind-css/html
 
         - https://dev.to/raphaelmansuy/how-to-add-tailwindcss-to-a-simple-html-project-446g
+
+    - Font Awesome icons
+
+        - Google Search: font awesome cdn link
+
+            - https://cdnjs.com/libraries/font-awesome
+        
+        - font awesome icons
+
+            - https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=times
