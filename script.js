@@ -231,7 +231,7 @@ let handleModalTicketsLockAndUnlock = (modalTicket) => {
 
         When the user clicks on the modal ticket color then it should change the color to the next priority color
 */
-let handleModalTicketsPriorityColorChange = (modalTicket) => {
+let handleModalTicketsPriorityColorChange = (modalTicket, modalTicketUniqueID) => {
 
     let ticketColorDiv = modalTicket.querySelector(".ticket-color");
    
@@ -287,6 +287,17 @@ let handleModalTicketsPriorityColorChange = (modalTicket) => {
             }
 
         }
+
+        // get the modal ticket index
+        let modalTicketIndex = modalTicketsArr.findIndex((eachTicketObject, index) => {
+
+            return eachTicketObject.uniqueTicketId === modalTicketUniqueID;
+        });
+        console.log(modalTicketIndex);
+
+        // Modify the data in localStorage (priority color change)
+        modalTicketsArr[modalTicketIndex].currentPriorityColor = newTicketColor;
+        localStorage.setItem("jira_tickets", JSON.stringify(modalTicketsArr)); 
     })
 }
 
@@ -380,7 +391,7 @@ let createNewTicket = (currentPriorityColor, textAreaValue, uniqueTicketId) => {
 
             When the user clicks on the modal ticket color then it should change the color to the next priority color
     */
-    handleModalTicketsPriorityColorChange(newDivForTicket);
+    handleModalTicketsPriorityColorChange(newDivForTicket, uniqueID);
 
 }
 
