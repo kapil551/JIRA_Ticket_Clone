@@ -16,6 +16,11 @@ let modalTicketCurrentPriorityColor = priorityColors[priorityColors.length - 1];
 let removeBtn = document.querySelector(".remove-btn");
 // console.log(removeBtn);
 
+// fontawsome lock-open icon --> <i class="fas fa-lock-open"></i>
+let unlockClass = "fa-lock-open";
+// fontawesome lock icon --> <i class="fas fa-lock"></i>
+let lockClass = "fa-lock";
+
 let addFlag = false;
 let removeFlag = false;
 
@@ -109,6 +114,41 @@ let CreateNewTicketHandler = (event) => {
     }
 }
 
+ /* Adding a ticket lock and unlock functionality
+
+    If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
+*/
+let handleModalTicketsLockAndUnlock = (modalTicket) => {
+
+    let ticketLockElem = modalTicket.querySelector(".ticket-lock");
+    // console.log(ticketLockElem);
+    let ticketLock = ticketLockElem.children[0];
+    // console.log(ticketLock);
+    let ticketTaskArea = modalTicket.querySelector(".task-area");
+    // console.log(ticketTaskArea);
+
+    ticketLock.addEventListener("click", (event) => {
+        console.log(ticketLock);
+        
+        // if ticket is locked
+        if(ticketLock.classList.contains(lockClass)) {
+            
+            // then unlock it
+            ticketLock.classList.remove(lockClass);
+            ticketLock.classList.add(unlockClass);
+            ticketTaskArea.setAttribute("contenteditable", "true");
+        }
+        // else ticket is unlocked
+        else {
+            // then lock it
+            ticketLock.classList.remove(unlockClass);
+            ticketLock.classList.add(lockClass);
+            ticketTaskArea.setAttribute("contenteditable", "false");
+        }
+    });
+
+}
+
 let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     console.log("creating a new ticket...");
     
@@ -145,7 +185,7 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     newDivForTicket.innerHTML = `
         <div class="ticket-color h-4 ${newModalTicketColor}"></div>
         <div class="ticket-id h-8 p-2"> ${uniqueTicketId} </div>
-        <div class="task-area h-32 p-2">
+        <div class="task-area h-32 p-2 outline-none">
             ${textAreaValue}
         </div>
         <div class="ticket-lock flex items-center justify-end pr-4 mt-1 text-xl text-gray-500">
@@ -160,6 +200,12 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     let allModalTickets = document.querySelectorAll(".ticket-cont");
     console.log(allModalTickets);
     handleModalTicketsRemoval(allModalTickets);
+
+    /* Adding a ticket lock and unlock functionality
+
+        If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
+    */
+    handleModalTicketsLockAndUnlock(newDivForTicket);
 
 }
 

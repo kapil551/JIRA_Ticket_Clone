@@ -77,6 +77,13 @@
         - Adding a ticket lock and unlock functionality
 
             - added a lock button to every new modal ticket
+
+            - If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
+
+            - if the ticket is locked then the user cannot edit the textarea contents, and if the ticket is unlocked then the user can 
+            edit the text area contents.
+
+                    contenteditable --> https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
         
         - Adding remove ticket functionality
 
