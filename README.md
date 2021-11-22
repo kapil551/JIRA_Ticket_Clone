@@ -102,5 +102,13 @@
             - When the user clicks on the modal ticket color then it should change the color to the next priority color
 
                     arr.findIndex() --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+        
+        - Adding Ticket Filter functionality
+
+            - When the user "clicks" on a particular color from toolbox colors then It should display only those tickets having that
+            ticket color
+
+            - When the user ""double clicks" on any color from toolbox colors then display all tickets.
+
 
     

@@ -24,6 +24,70 @@ let lockClass = "fa-lock";
 let addFlag = false;
 let removeFlag = false;
 
+let toolboxColors = document.querySelectorAll(".color");
+// console.log(toolboxColors);
+
+// array of objects to access every modal ticket
+let modalTicketsArr = [];
+
+/*
+
+Adding Ticket Filter functionality
+
+    When the user "clicks" on a particular color from toolbox colors then It should display only those tickets having that
+    ticket color
+
+    When the user ""double clicks" on any color from toolbox colors then display all tickets.
+*/
+for(let i = 0; i < toolboxColors.length; i++) {
+
+    // filter ticket on "click"
+    toolboxColors[i].addEventListener("click", (event) => {
+
+        let filterColor = toolboxColors[i].classList[0];
+        console.log(filterColor);
+
+        // filter tickets based on filterColor
+        let filteredModalTicketsArr = modalTicketsArr.filter((eachTicketObject, index) => {
+
+            return eachTicketObject.currentPriorityColor === filterColor;
+        });
+
+        // remove already displayed tickets from DOM
+        let allAlreadyDisplayedTickets = document.querySelectorAll(".ticket-cont");
+        for(let i = 0; i < allAlreadyDisplayedTickets.length; i++) {
+
+            allAlreadyDisplayedTickets[i].remove();
+        }
+
+        // display the filtered tickets
+        filteredModalTicketsArr.forEach((eachTicketObject, index) => {
+
+            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.uniqueTicketId, eachTicketObject.textAreaValue);
+        })
+
+    });
+
+    // display all tickets on "double click"
+    toolboxColors[i].addEventListener("dblclick", (event) => {
+
+        // remove already displayed tickets from DOM
+        let allAlreadyDisplayedTickets = document.querySelectorAll(".ticket-cont");
+        for(let i = 0; i < allAlreadyDisplayedTickets.length; i++) {
+
+            allAlreadyDisplayedTickets[i].remove();
+        }
+
+        // display all tickets
+        modalTicketsArr.forEach((eachTicketObject, index) => {
+
+            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.uniqueTicketId, eachTicketObject.textAreaValue);
+        })
+
+    });
+}
+
+
 // Event listener for modal ticket priority coloring
 allPriorityColors.forEach((color, index) => {
     // console.log(color);
@@ -260,7 +324,15 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     // append this new ticket div as a child of the div with class "main-cont" 
     mainContainerDiv.appendChild(newDivForTicket);
 
-        
+    // Create an object of new modal ticket and push it to modalTicketsArr
+    console.log(uniqueTicketId);
+
+    modalTicketsArr.push({
+        currentPriorityColor,
+        uniqueTicketId,
+        textAreaValue
+    });
+
     let allModalTickets = document.querySelectorAll(".ticket-cont");
     console.log(allModalTickets);
     handleModalTicketsRemoval(allModalTickets);
