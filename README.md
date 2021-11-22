@@ -77,4 +77,13 @@
         - Adding a ticket lock and unlock functionality
 
             - added a lock button to every new modal ticket
+        
+        - Adding remove ticket functionality
+
+            -  when the user clicks on the remove button for the first time the ticket remove functionality should enable and when the user again clicks on the remove button then the ticket remove functionality should disable.
+
+            - handle ticket removal
+            
+                    If the ticket remove functionality is enabled then remove the modal ticket on which the user double clicks.
+
     

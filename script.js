@@ -13,8 +13,11 @@ let priorityColors = ["pink", "blue", "green", "black"];
 let modalTicketCurrentPriorityColor = priorityColors[priorityColors.length - 1]; // "black" is the default priority color.
 // console.log(modalTicketCurrentPriorityColor);
 
+let removeBtn = document.querySelector(".remove-btn");
+// console.log(removeBtn);
 
 let addFlag = false;
+let removeFlag = false;
 
 // Event listener for modal ticket priority coloring
 allPriorityColors.forEach((color, index) => {
@@ -36,6 +39,25 @@ allPriorityColors.forEach((color, index) => {
     });
 
 });
+
+// handle ticket removal --> If the ticket remove functionality is enabled then remove the modal ticket on which the user double clicks.
+let handleModalTicketsRemoval = (allModalTickets) => {
+
+    allModalTickets.forEach((modalTicket, index) => {
+        // console.log(modalTicket);
+        modalTicket.addEventListener("dblclick", (event) => {
+
+            // removeFlag --> true , remove ticket enabled --> remove newModalTicket
+            // removeFlag --> false, remove ticket disabled
+            if(removeFlag === true) {
+
+                modalTicket.remove();
+            }
+
+        });
+    });
+    
+}
 
 // when the user clicks on the add button then show the modal container,
 // and when the user again clicks on the add button then again hide the modal container.
@@ -134,11 +156,34 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId) => {
 
     // append this new ticket div as a child of the div with class "main-cont" 
     mainContainerDiv.appendChild(newDivForTicket);
+
+        
+    let allModalTickets = document.querySelectorAll(".ticket-cont");
+    console.log(allModalTickets);
+    handleModalTicketsRemoval(allModalTickets);
+
 }
 
 // Task - When the use clicks on the addBtn, then the modal container should
 // appear, otherwise it should remain disapear.
 addBtn.addEventListener("click", ModalContainerHandler);
+
+// Task - adding remove ticket functionality, when the user clicks on the remove button for the first time 
+// the ticket remove functionality should enable and when the user again clicks on the remove button then the 
+// ticket remove functionality should disable
+removeBtn.addEventListener("click", (event) => {
+
+    // removeFlag --> true , remove ticket enabled
+    // removeFlag --> false, remove ticket disabled
+    removeFlag = !removeFlag; // toggle
+
+    if(removeFlag === false) {
+        console.log("remove ticket is disabled");
+    }
+    else {
+        console.log("remove ticket is enabled");
+    }
+});
 
 // Task - add some logic to create a new ticket through DOM in html
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event
