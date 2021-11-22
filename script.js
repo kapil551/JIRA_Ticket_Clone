@@ -195,7 +195,7 @@ let resetModalToDefaultState = () => {
 
     If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
 */
-let handleModalTicketsLockAndUnlock = (modalTicket) => {
+let handleModalTicketsLockAndUnlock = (modalTicket, modalTicketUniqueID) => {
 
     let ticketLockElem = modalTicket.querySelector(".ticket-lock");
     // console.log(ticketLockElem);
@@ -222,6 +222,17 @@ let handleModalTicketsLockAndUnlock = (modalTicket) => {
             ticketLock.classList.add(lockClass);
             ticketTaskArea.setAttribute("contenteditable", "false");
         }
+
+        // get the modal ticket index
+        let modalTicketIndex = modalTicketsArr.findIndex((eachTicketObject, index) => {
+
+            return eachTicketObject.uniqueTicketId === modalTicketUniqueID;
+        });
+        console.log(modalTicketIndex);
+
+        // Modify the data in localStorage (update ticket task)
+        modalTicketsArr[modalTicketIndex].textAreaValue = ticketTaskArea.innerText;
+        localStorage.setItem("jira_tickets", JSON.stringify(modalTicketsArr)); 
     });
 
 }
@@ -384,7 +395,7 @@ let createNewTicket = (currentPriorityColor, textAreaValue, uniqueTicketId) => {
 
         If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
     */
-    handleModalTicketsLockAndUnlock(newDivForTicket);
+    handleModalTicketsLockAndUnlock(newDivForTicket, uniqueID);
 
     /*
         Change the modal ticket color priority
