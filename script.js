@@ -71,7 +71,14 @@ let CreateNewTicketHandler = (event) => {
         // Create a new ticket
         // DOM Implementation and Manipulation - applying priority coloring to a new modal ticket
         // create a new modal ticket with the current priority color
-        createNewTicket(modalTicketCurrentPriorityColor);
+        /*
+        Generating unique ticket id's for every new modal ticket
+
+            - Google Search : short id unpkg script
+            
+                https://www.npmjs.com/package/shortid-dist?activeTab=readme
+        */
+        createNewTicket(modalTicketCurrentPriorityColor, shortid());
 
         // After creating a new ticket
         modalContainer.style.display = "none";
@@ -80,12 +87,14 @@ let CreateNewTicketHandler = (event) => {
     }
 }
 
-let createNewTicket = (currentPriorityColor) => {
+let createNewTicket = (currentPriorityColor, uniqueTicketId) => {
     console.log("creating a new ticket...");
     
     let newModalTicketColor = "";
     console.log(currentPriorityColor);
-    
+
+    console.log(uniqueTicketId);
+
     if(currentPriorityColor === "black") {
         newModalTicketColor = `bg-${currentPriorityColor}`;
     }
@@ -113,7 +122,7 @@ let createNewTicket = (currentPriorityColor) => {
     // create a new modal ticket with the current priority color
     newDivForTicket.innerHTML = `
         <div class="ticket-color h-4 ${newModalTicketColor}"></div>
-        <div class="ticket-id h-8 p-2">#sample_id</div>
+        <div class="ticket-id h-8 p-2"> ${uniqueTicketId} </div>
         <div class="task-area h-5/6 p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit 
             Ad ea, recusandae vitae perspiciatis tempora accusamus.

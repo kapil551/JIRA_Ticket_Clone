@@ -66,4 +66,11 @@
 
             - Applying priority coloring to a new modal ticket
 
-                (create the new modal ticket with the currently selected priority color)
+                    (create the new modal ticket with the currently selected priority color)
+        
+        - Generating unique ticket id's for every new modal ticket
+
+            - Google Search : short id unpkg script
+            
+                    https://www.npmjs.com/package/shortid-dist?activeTab=readme
+    
