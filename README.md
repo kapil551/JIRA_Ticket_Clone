@@ -114,5 +114,42 @@
         
         - After creating a new ticket ---> reset modal to default state
 
+6. Web Storage API:
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+    - It is provided by the browser.
+
+    - It is a set of mechanisms for porviding storage in the form of key value pairs (objects).
+
+    - Types Of storage in browser:
+
+        - Local Storage
+                - Expiry: data persists even after closing the browser
+
+                - Storage: almost 5 MB
+
+        - Session Storage
+
+                - Expiry: Only available for that particular session (browser close, refresh site)
+
+                - Less Storage
+    
+    - stored data is always in key-value pairs which should be a string i.e JSON format.
+
+7. JSON Format:
+
+    - JSON.stringify()
+
+    - JSON.parse()
+
+8. Using Local Storage in our website:
+
+    - Create Tickets
+
+    - Changing priority colors
+
+    - Ticket task edit
+
 
     

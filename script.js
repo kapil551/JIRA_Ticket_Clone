@@ -357,6 +357,11 @@ let createNewTicket = (currentPriorityColor, textAreaValue, uniqueTicketId) => {
             uniqueTicketId: uniqueID,
             textAreaValue
         });
+
+        // create a local storage named "jira_tickets"
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+        // stored data is always in key-value pairs which should be a string i.e JSON format for objects.
+        localStorage.setItem("jira_tickets", JSON.stringify(modalTicketsArr)); 
     }
     
 
