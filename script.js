@@ -171,11 +171,24 @@ let CreateNewTicketHandler = (event) => {
         */
         createNewTicket(modalTicketCurrentPriorityColor, modalContainerTextArea.value);
 
-        // After creating a new ticket
-        modalContainer.style.display = "none";
-        modalContainerTextArea.value = "";
         addFlag = false;
+        // After creating a new ticket --> reset modal to default state
+        resetModalToDefaultState();
     }
+}
+
+// After creating a new ticket --> reset modal to default state
+let resetModalToDefaultState = () => {
+
+    modalContainer.style.display = "none";
+    modalContainerTextArea.value = "";
+    modalTicketCurrentPriorityColor = priorityColors[priorityColors.length - 1]; // "black" is the default priority color.
+    allPriorityColors.forEach((eachColor, index) => {
+        eachColor.classList.remove("border-4", "border-white");
+    });
+
+    allPriorityColors[allPriorityColors.length - 1].classList.add("border-4", "border-white");
+    
 }
 
  /* Adding a ticket lock and unlock functionality

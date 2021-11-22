@@ -111,6 +111,8 @@
             - When the user ""double clicks" on any color from toolbox colors then display all tickets.
 
             - Handle duplicity problem in ticket filter functionality
+        
+        - After creating a new ticket ---> reset modal to default state
 
 
     
