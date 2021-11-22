@@ -110,20 +110,30 @@ allPriorityColors.forEach((color, index) => {
 });
 
 // handle ticket removal --> If the ticket remove functionality is enabled then remove the modal ticket on which the user double clicks.
-let handleModalTicketsRemoval = (allModalTickets) => {
+let handleModalTicketsRemoval = (modalTicket, modalTicketUniqueID) => {
 
-    allModalTickets.forEach((modalTicket, index) => {
-        // console.log(modalTicket);
-        modalTicket.addEventListener("dblclick", (event) => {
+    // console.log(modalTicket);
+    modalTicket.addEventListener("dblclick", (event) => {
 
-            // removeFlag --> true , remove ticket enabled --> remove newModalTicket
-            // removeFlag --> false, remove ticket disabled
-            if(removeFlag === true) {
+        // removeFlag --> true , remove ticket enabled --> remove newModalTicket
+        // removeFlag --> false, remove ticket disabled
+        if(removeFlag === true) {
 
-                modalTicket.remove();
-            }
+            // get the modal ticket index
+            let modalTicketIndex = modalTicketsArr.findIndex((eachTicketObject, index) => {
 
-        });
+                return eachTicketObject.uniqueTicketId === modalTicketUniqueID;
+            });
+            console.log(modalTicketIndex);
+
+            // Modify the data in localStorage (remove ticket)
+            modalTicketsArr.splice(modalTicketIndex, 1);
+            localStorage.setItem("jira_tickets", JSON.stringify(modalTicketsArr)); 
+
+            modalTicket.remove(); // remove from DOM
+
+        }
+
     });
     
 }
@@ -389,7 +399,7 @@ let createNewTicket = (currentPriorityColor, textAreaValue, uniqueTicketId) => {
 
     let allModalTickets = document.querySelectorAll(".ticket-cont");
     console.log(allModalTickets);
-    handleModalTicketsRemoval(allModalTickets);
+    handleModalTicketsRemoval(newDivForTicket, uniqueID);
 
     /* Adding a ticket lock and unlock functionality
 

@@ -151,5 +151,7 @@
 
     - Ticket task edit
 
+    - Tickets removal
+
 
     
