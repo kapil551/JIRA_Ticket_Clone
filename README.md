@@ -63,3 +63,7 @@
         - modal ticket priority color
 
             - Add a functionality to select the priority color for a new modal ticket.
+
+            - Applying priority coloring to a new modal ticket
+
+                (create the new modal ticket with the currently selected priority color)

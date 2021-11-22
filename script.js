@@ -9,7 +9,7 @@ let mainContainerDiv = document.querySelector(".main-cont");
 let allPriorityColors = document.querySelectorAll(".priority-color");
 // console.log(allPriorityColors);
 
-let priorityColors = ["lightpink", "lightblue", "lightgreen", "black"];
+let priorityColors = ["pink", "blue", "green", "black"];
 let modalTicketCurrentPriorityColor = priorityColors[priorityColors.length - 1]; // "black" is the default priority color.
 // console.log(modalTicketCurrentPriorityColor);
 
@@ -69,7 +69,9 @@ let CreateNewTicketHandler = (event) => {
     if(currentPressedKey === "Alt") {
         
         // Create a new ticket
-        createNewTicket();
+        // DOM Implementation and Manipulation - applying priority coloring to a new modal ticket
+        // create a new modal ticket with the current priority color
+        createNewTicket(modalTicketCurrentPriorityColor);
 
         // After creating a new ticket
         modalContainer.style.display = "none";
@@ -78,8 +80,18 @@ let CreateNewTicketHandler = (event) => {
     }
 }
 
-let createNewTicket = () => {
+let createNewTicket = (currentPriorityColor) => {
     console.log("creating a new ticket...");
+    
+    let newModalTicketColor = "";
+    console.log(currentPriorityColor);
+    
+    if(currentPriorityColor === "black") {
+        newModalTicketColor = `bg-${currentPriorityColor}`;
+    }
+    else {
+        newModalTicketColor = `bg-${currentPriorityColor}-500`;
+    }
 
     // create a new div element
     /*
@@ -96,8 +108,11 @@ let createNewTicket = () => {
      */
     let newDivForTicket = document.createElement("div");
     newDivForTicket.setAttribute("class", "ticket-cont h-48 w-64 bg-gray-200");
+
+    // DOM Implementation and Manipulation - applying priority coloring to a new modal ticket
+    // create a new modal ticket with the current priority color
     newDivForTicket.innerHTML = `
-        <div class="ticket-color h-4 bg-pink-500"></div>
+        <div class="ticket-color h-4 ${newModalTicketColor}"></div>
         <div class="ticket-id h-8 p-2">#sample_id</div>
         <div class="task-area h-5/6 p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit 
