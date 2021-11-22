@@ -6,8 +6,36 @@ let modalContainerTextArea = document.querySelector(".textarea-cont");
 // console.log(modalContainerTextArea);
 let mainContainerDiv = document.querySelector(".main-cont");
 // console.log(mainContainerDiv);
+let allPriorityColors = document.querySelectorAll(".priority-color");
+// console.log(allPriorityColors);
+
+let priorityColors = ["lightpink", "lightblue", "lightgreen", "black"];
+let modalTicketCurrentPriorityColor = priorityColors[priorityColors.length - 1]; // "black" is the default priority color.
+// console.log(modalTicketCurrentPriorityColor);
+
 
 let addFlag = false;
+
+// Event listener for modal ticket priority coloring
+allPriorityColors.forEach((color, index) => {
+    // console.log(color);
+    color.addEventListener("click", (event) => {
+        // console.log(`modal ticket priority color is ${color.classList[0]}`);
+
+        // remove border from the previously selected priority color
+        allPriorityColors.forEach((eachColor, index) => {
+            eachColor.classList.remove("border-4", "border-white");
+        })
+
+        // add border to the currently selected priority color
+        color.classList.add("border-4", "border-white");
+
+        // update the modalTicket Current Priority Color
+        modalTicketCurrentPriorityColor = color.classList[0];
+        // console.log(modalTicketCurrentPriorityColor);
+    });
+
+});
 
 // when the user clicks on the add button then show the modal container,
 // and when the user again clicks on the add button then again hide the modal container.

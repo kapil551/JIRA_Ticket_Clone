@@ -55,3 +55,11 @@
                         top: 50%;
                         transform: translate(-50%,-50%);
                     }
+
+5. DOM Implementation and Manipulation:
+
+    - Modal functionality
+
+        - modal ticket priority color
+
+            - Add a functionality to select the priority color for a new modal ticket.
