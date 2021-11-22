@@ -153,5 +153,7 @@
 
     - Tickets removal
 
+    - Retrieve All tickets from localStorage and display all tickets present in the localStorage
+
 
     

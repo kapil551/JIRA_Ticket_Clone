@@ -30,6 +30,23 @@ let toolboxColors = document.querySelectorAll(".color");
 // array of objects to access every modal ticket
 let modalTicketsArr = [];
 
+
+let retrieveAndDisplayAllCreatedModalTicketsFromLocalStorage = () => {
+    // Retrieve All tickets from localStorage and display all tickets present in the localStorage
+    // check if an object named "jira_tickets" exists in the localStorage or not
+    if(localStorage.getItem("jira_tickets")) {
+
+        // retrieve all tickets and display them in the DOM
+        modalTicketsArr = JSON.parse(localStorage.getItem("jira_tickets"));
+        
+        modalTicketsArr.forEach((eachTicketObject, index) => {
+
+            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.textAreaValue, eachTicketObject.uniqueTicketId);
+        })
+
+    }
+}
+
 /*
 
 Adding Ticket Filter functionality
@@ -440,3 +457,5 @@ removeBtn.addEventListener("click", (event) => {
 // Task - add some logic to create a new ticket through DOM in html
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event
 modalContainer.addEventListener("keydown", (event) => {CreateNewTicketHandler(event)});
+
+retrieveAndDisplayAllCreatedModalTicketsFromLocalStorage();
