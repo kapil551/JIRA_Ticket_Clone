@@ -96,5 +96,11 @@
         - Update the ticket task with the text area value
 
             - create a new modal ticket with the text area value that the use types in.
+        
+        - Change the modal ticket color priority
+
+            - When the user clicks on the modal ticket color then it should change the color to the next priority color
+
+                    arr.findIndex() --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
 
     

@@ -149,6 +149,70 @@ let handleModalTicketsLockAndUnlock = (modalTicket) => {
 
 }
 
+/*
+    Change the modal ticket color priority
+
+        When the user clicks on the modal ticket color then it should change the color to the next priority color
+*/
+let handleModalTicketsPriorityColorChange = (modalTicket) => {
+
+    let ticketColorDiv = modalTicket.querySelector(".ticket-color");
+   
+    ticketColorDiv.addEventListener("click", (event) => {
+
+        console.log(ticketColorDiv);
+        let currentTicketColorString = ticketColorDiv.classList[2];
+        // console.log(currentTicketColorString);
+
+        let currentTicketColorStringToArray = currentTicketColorString.split("-");
+        // console.log(currentTicketColorStringToArray)
+
+        let currentTicketColor = currentTicketColorStringToArray[1];
+        // console.log(currentTicketColor);
+
+        // get the index of the current ticket color from the priorityColors array
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+        let indexOfCurrentTicketColor = priorityColors.findIndex((color) => {
+
+            return currentTicketColor === color;
+        });
+
+        console.log(currentTicketColor, indexOfCurrentTicketColor);
+        indexOfCurrentTicketColor++; // go to the next color in priorityColors array
+        let indexOfnewTicketColor = indexOfCurrentTicketColor % priorityColors.length; // also handle out of bound indexes
+
+        let newTicketColor = priorityColors[indexOfnewTicketColor];
+        console.log(newTicketColor, indexOfnewTicketColor);
+
+        if(currentTicketColor === "black") {
+
+            ticketColorDiv.classList.remove(`bg-${currentTicketColor}`);
+
+            if(newTicketColor === "black") {
+
+                ticketColorDiv.classList.add(`bg-${newTicketColor}`);
+            }
+            else {
+                ticketColorDiv.classList.add(`bg-${newTicketColor}-500`);
+            }
+
+        }
+        else {
+
+            ticketColorDiv.classList.remove(`bg-${currentTicketColor}-500`);
+
+            if(newTicketColor === "black") {
+
+                ticketColorDiv.classList.add(`bg-${newTicketColor}`);
+            }
+            else {
+                ticketColorDiv.classList.add(`bg-${newTicketColor}-500`);
+            }
+
+        }
+    })
+}
+
 let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     console.log("creating a new ticket...");
     
@@ -206,6 +270,13 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
         If the ticket is locked then unlock it when the user clicks on it, and if the ticket is unlocked then lock it again when the user clicks on it again.
     */
     handleModalTicketsLockAndUnlock(newDivForTicket);
+
+    /*
+        Change the modal ticket color priority
+
+            When the user clicks on the modal ticket color then it should change the color to the next priority color
+    */
+    handleModalTicketsPriorityColorChange(newDivForTicket);
 
 }
 
