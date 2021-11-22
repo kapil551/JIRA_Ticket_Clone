@@ -116,16 +116,19 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId) => {
         </div>
      */
     let newDivForTicket = document.createElement("div");
-    newDivForTicket.setAttribute("class", "ticket-cont h-48 w-64 bg-gray-200");
+    newDivForTicket.setAttribute("class", "ticket-cont h-52 w-64 bg-gray-200");
 
     // DOM Implementation and Manipulation - applying priority coloring to a new modal ticket
     // create a new modal ticket with the current priority color
     newDivForTicket.innerHTML = `
         <div class="ticket-color h-4 ${newModalTicketColor}"></div>
         <div class="ticket-id h-8 p-2"> ${uniqueTicketId} </div>
-        <div class="task-area h-5/6 p-2">
+        <div class="task-area h-32 p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit 
             Ad ea, recusandae vitae perspiciatis tempora accusamus.
+        </div>
+        <div class="ticket-lock flex items-center justify-end pr-4 mt-1 text-xl text-gray-500">
+            <i class="fas fa-lock"></i>
         </div>
     `
 

@@ -73,4 +73,8 @@
             - Google Search : short id unpkg script
             
                     https://www.npmjs.com/package/shortid-dist?activeTab=readme
+        
+        - Adding a ticket lock and unlock functionality
+
+            - added a lock button to every new modal ticket
     
