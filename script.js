@@ -63,7 +63,7 @@ for(let i = 0; i < toolboxColors.length; i++) {
         // display the filtered tickets
         filteredModalTicketsArr.forEach((eachTicketObject, index) => {
 
-            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.uniqueTicketId, eachTicketObject.textAreaValue);
+            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.textAreaValue, eachTicketObject.uniqueTicketId);
         })
 
     });
@@ -81,7 +81,7 @@ for(let i = 0; i < toolboxColors.length; i++) {
         // display all tickets
         modalTicketsArr.forEach((eachTicketObject, index) => {
 
-            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.uniqueTicketId, eachTicketObject.textAreaValue);
+            createNewTicket(eachTicketObject.currentPriorityColor, eachTicketObject.textAreaValue, eachTicketObject.uniqueTicketId);
         })
 
     });
@@ -169,7 +169,7 @@ let CreateNewTicketHandler = (event) => {
             
                 https://www.npmjs.com/package/shortid-dist?activeTab=readme
         */
-        createNewTicket(modalTicketCurrentPriorityColor, shortid(), modalContainerTextArea.value);
+        createNewTicket(modalTicketCurrentPriorityColor, modalContainerTextArea.value);
 
         // After creating a new ticket
         modalContainer.style.display = "none";
@@ -277,13 +277,24 @@ let handleModalTicketsPriorityColorChange = (modalTicket) => {
     })
 }
 
-let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
+let createNewTicket = (currentPriorityColor, textAreaValue, uniqueTicketId) => {
     console.log("creating a new ticket...");
     
+    // new ticket ka uniqueID undefined aaye ga toh uske liye shortid() se uniqueID generate karo
+    /*
+        if(uniqueTicketId === undefined) {
+        let uniqueID = shortid();
+        }
+        else {
+        let uniqueID = uniqueTicketId
+        }
+
+    */
+    let uniqueID = uniqueTicketId || shortid();
+    console.log(uniqueID);
+
     let newModalTicketColor = "";
     console.log(currentPriorityColor);
-
-    console.log(uniqueTicketId);
 
     if(currentPriorityColor === "black") {
         newModalTicketColor = `bg-${currentPriorityColor}`;
@@ -312,7 +323,7 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     // create a new modal ticket with the current priority color
     newDivForTicket.innerHTML = `
         <div class="ticket-color h-4 ${newModalTicketColor}"></div>
-        <div class="ticket-id h-8 p-2"> ${uniqueTicketId} </div>
+        <div class="ticket-id h-8 p-2"> ${uniqueID} </div>
         <div class="task-area h-32 p-2 outline-none">
             ${textAreaValue}
         </div>
@@ -325,13 +336,16 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     mainContainerDiv.appendChild(newDivForTicket);
 
     // Create an object of new modal ticket and push it to modalTicketsArr
+    // only push the newly created modal ticket to the modalTicketsArr
     console.log(uniqueTicketId);
-
-    modalTicketsArr.push({
-        currentPriorityColor,
-        uniqueTicketId,
-        textAreaValue
-    });
+    if(uniqueTicketId === undefined) {
+        modalTicketsArr.push({
+            currentPriorityColor,
+            uniqueTicketId: uniqueID,
+            textAreaValue
+        });
+    }
+    
 
     let allModalTickets = document.querySelectorAll(".ticket-cont");
     console.log(allModalTickets);
