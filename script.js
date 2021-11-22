@@ -100,7 +100,7 @@ let CreateNewTicketHandler = (event) => {
             
                 https://www.npmjs.com/package/shortid-dist?activeTab=readme
         */
-        createNewTicket(modalTicketCurrentPriorityColor, shortid());
+        createNewTicket(modalTicketCurrentPriorityColor, shortid(), modalContainerTextArea.value);
 
         // After creating a new ticket
         modalContainer.style.display = "none";
@@ -109,7 +109,7 @@ let CreateNewTicketHandler = (event) => {
     }
 }
 
-let createNewTicket = (currentPriorityColor, uniqueTicketId) => {
+let createNewTicket = (currentPriorityColor, uniqueTicketId, textAreaValue) => {
     console.log("creating a new ticket...");
     
     let newModalTicketColor = "";
@@ -146,8 +146,7 @@ let createNewTicket = (currentPriorityColor, uniqueTicketId) => {
         <div class="ticket-color h-4 ${newModalTicketColor}"></div>
         <div class="ticket-id h-8 p-2"> ${uniqueTicketId} </div>
         <div class="task-area h-32 p-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit 
-            Ad ea, recusandae vitae perspiciatis tempora accusamus.
+            ${textAreaValue}
         </div>
         <div class="ticket-lock flex items-center justify-end pr-4 mt-1 text-xl text-gray-500">
             <i class="fas fa-lock"></i>

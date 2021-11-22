@@ -85,5 +85,9 @@
             - handle ticket removal
             
                     If the ticket remove functionality is enabled then remove the modal ticket on which the user double clicks.
+        
+        - Update the ticket task with the text area value
+
+            - create a new modal ticket with the text area value that the use types in.
 
     
