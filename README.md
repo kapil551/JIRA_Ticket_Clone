@@ -155,5 +155,15 @@
 
     - Retrieve All tickets from localStorage and display all tickets present in the localStorage
 
+9. Adding responsiveness: (using media queries)
+
+    - Laptop / Destop 
+
+    - Tablet
+
+    - Large Mobile
+
+    - Small Mobile
+
 
     
